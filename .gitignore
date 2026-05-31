@@ -1,0 +1,6 @@
+node_modules/
+dist/
+release/
+accounts.json
+accounts.json.tmp
+npm-debug.log*

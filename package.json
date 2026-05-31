@@ -1,0 +1,58 @@
+{
+  "name": "multiriotmobileauth",
+  "version": "0.1.0",
+  "description": "Electron TypeScript client for managing Riot Games mobile 2FA codes.",
+  "private": true,
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "npm run build && electron .",
+    "start": "npm run dev",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dist": "npm run build && electron-builder --win nsis"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/qrcode": "^1.5.5",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2"
+  },
+  "build": {
+    "appId": "com.multiriotmobileauth.app",
+    "productName": "Multi Riot Mobile Auth",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "src/renderer/index.html",
+      "src/renderer/style.css",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "MultiRiotMoblieAuth-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Multi Riot Mobile Auth"
+    }
+  }
+}

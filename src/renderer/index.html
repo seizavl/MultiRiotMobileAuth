@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Riot 2FA</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="titlebar">
+      <span class="title-text">Riot 2FA</span>
+      <button id="win-close" class="win-close" type="button" title="閉じる" aria-label="閉じる">
+        <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+          <line x1="3" y1="3" x2="9" y2="9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+          <line x1="9" y1="3" x2="3" y2="9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <main class="shell">
+      <div class="toolbar">
+        <button id="add-login" class="btn btn-primary" type="button">ログインで追加</button>
+        <button id="add-manual" class="btn btn-secondary" type="button">手動で追加</button>
+      </div>
+
+      <section id="accounts" class="accounts" aria-live="polite"></section>
+      <p id="status" class="status"></p>
+    </main>
+
+    <dialog id="manual-dialog">
+      <form id="manual-form" method="dialog">
+        <h2>アカウントを追加</h2>
+        <label>
+          <span>アカウント名</span>
+          <input id="manual-name" autocomplete="off" placeholder="例: MyRiotAccount" />
+        </label>
+        <label>
+          <span>シードまたはURL</span>
+          <input id="manual-seed" autocomplete="off" placeholder="Base32シード または qrlogin URL" />
+        </label>
+        <div class="dialog-actions">
+          <button id="manual-cancel" class="btn btn-secondary" type="button">キャンセル</button>
+          <button class="btn btn-primary" type="submit">追加</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="qr-dialog">
+      <div class="qr-panel">
+        <div class="qr-header">
+          <h2 id="qr-title">認証用QRコード</h2>
+          <button id="qr-close" class="icon-button" type="button" title="閉じる" aria-label="閉じる">
+            <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+              <line x1="2.5" y1="2.5" x2="9.5" y2="9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              <line x1="9.5" y1="2.5" x2="2.5" y2="9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <img id="qr-image" class="qr-image" alt="認証用QRコード" />
+        <p class="qr-meta">TOTP · SHA-256 · 6桁 · 30秒</p>
+        <div class="dialog-actions">
+          <button id="qr-copy-url" class="btn btn-secondary" type="button">URLをコピー</button>
+          <button id="qr-copy-seed" class="btn btn-primary" type="button">シードをコピー</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="../../dist/renderer/renderer.js"></script>
+  </body>
+</html>

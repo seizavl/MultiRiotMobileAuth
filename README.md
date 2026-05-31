@@ -1,18 +1,9 @@
 # Multi Riot Mobile Auth
 
-Electron + TypeScript port of the Python desktop client.
+Electron + TypeScript 
+## つかいかた
+・インストールして起動します
+・左上のボタンを押してモバイル認証を有効にしたいアカウントでログインします （この時すでにアカウントのメール認証を行うことを推奨します（RiotAccountページの下の方にあるやつ））
+・追加したらアカウントの三点リーダーからQRコードを表示ボタンを押して表示します
+・そのQRコードを 自分のスマートフォンの Authenticator で読み取ります
 
-## Setup
-
-```powershell
-npm install
-npm run dev
-```
-
-Account secrets are saved to `accounts.json` in this project folder. The file is encrypted with Electron `safeStorage`, which uses the operating system's protected storage when available.
-
-## Scripts
-
-- `npm run dev` builds TypeScript and starts Electron.
-- `npm run build` compiles TypeScript into `dist/`.
-- `npm run typecheck` runs TypeScript without writing output.
